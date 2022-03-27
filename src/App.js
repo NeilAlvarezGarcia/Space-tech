@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navbar, Footer } from './components';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AboutUs, Home, Contact, Covid } from './pages';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { client_spacedata } from './graphql/ApplloClient';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<ApolloProvider client={client_spacedata}>
+				<Router>
+					<Navbar />
+					<Routes>
+						<Route path='/'>
+							<Route index element={<Home />} />
+							<Route path='contact' element={<Contact />} />
+							<Route path='about-us' element={<AboutUs />} />
+							<Route path='covid' element={<Covid />} />
+						</Route>
+					</Routes>
+					<Footer />
+				</Router>
+			</ApolloProvider>
+		</>
+	);
 }
 
 export default App;
