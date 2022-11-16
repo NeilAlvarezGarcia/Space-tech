@@ -36,7 +36,7 @@ const Home = () => {
 			</HeroContainer>
 
 			<ContentPageContainer>
-				<h2>Check out the last lounches</h2>
+				<h2>Check out the last launches</h2>
 
 				<GridContainer>
 					{!loading &&
